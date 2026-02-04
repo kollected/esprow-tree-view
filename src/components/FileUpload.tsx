@@ -1,7 +1,8 @@
-import { type ChangeEvent, useState } from 'react'
+import { type ChangeEvent } from 'react'
+import { useStore } from '../store.ts'
 
 export const FileUpload = () => {
-  const [data, setData] = useState(null)
+  const { setData } = useStore()
 
   const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const reader = new FileReader()
@@ -16,11 +17,11 @@ export const FileUpload = () => {
   return (
     <div className='FileUpload'>
       <h4>Upload a .json</h4>
-      <input type='file'
-             accept='.json,application/json'
-             onChange={handleUpload}
+      <input
+        type='file'
+        accept='.json,application/json'
+        onChange={handleUpload}
       />
-      <div onClick={() => console.log(data)}>{typeof data}</div>
     </div>
   )
 }
