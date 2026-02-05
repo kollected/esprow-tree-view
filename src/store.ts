@@ -8,7 +8,7 @@ type Item = {
 
 type MapItem = Omit<Item, 'children'> & { children?: string[] }
 
-type NavItem = {
+export type NavItem = {
   name: string
   internalID: string
   children?: NavItem[]
@@ -21,7 +21,7 @@ type Store = {
   setData: (data: Item[]) => void
   // not sure if i grab the entire item or just grab the id (parentName.nextName.name)
   // this will do for now
-  selectedItem?: string
+  selectedItem: string
   setSelectedItem: (item: string) => void
   // another question: should i create a separate property with names only? for the actual tree?
   // not sure.
@@ -77,6 +77,6 @@ export const useStore = create<Store>((set) => ({
     const { nav, map } = formatData(data)
     set({ data, nav, map })
   },
-  selectedItem: undefined,
+  selectedItem: '',
   setSelectedItem: (selectedItem) => set({ selectedItem })
 }))
