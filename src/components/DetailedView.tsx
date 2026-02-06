@@ -5,12 +5,27 @@ export const DetailedView = () => {
 
   const obj = map?.get(selectedItem)
 
-  if (!obj) return <span>no item selected</span>
+  if (!obj) return <span>No item selected</span>
+
+  const { children, ...rest } = obj
+
+  const entries = Object.entries(rest)
 
   // doesn't look good, gotta refine this later
   return (
-    <div>
-      {Object.keys(obj).map((key) => <div key={key}>{key}: {String(obj[key])}</div>)}
-    </div>
+    <dl className='DetailedView'>
+      {entries.map(([key, value], index) => (
+        <div key={index} className='Row'>
+          <dt>{key}:</dt>
+          <dd>{String(value)}</dd>
+        </div>
+      ))}
+      {children && (
+        <div className='Row'>
+          <dt>children:</dt>
+          <dd>{children.map((name) => <p key={name}>{name}</p>)}</dd>
+        </div>
+      )}
+    </dl>
   )
 }
