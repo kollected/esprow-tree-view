@@ -11,7 +11,6 @@ export const DetailedView = () => {
 
   const entries = Object.entries(rest)
 
-  // doesn't look good, gotta refine this later
   return (
     <dl className='DetailedView'>
       {entries.map(([key, value], index) => (
