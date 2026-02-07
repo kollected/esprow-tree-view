@@ -22,8 +22,10 @@ type Store = {
   fileName: string
   selectedItem: string
   setSelectedItem: (item: string) => void
-  nav?: Navigation
-  map?: Map<string, MapItem>
+  nav: Navigation
+  map: Map<string, MapItem>
+  expanded: Set<string>
+  setExpanded: (expanded: Set<string>) => void
 }
 
 const formatChildren = (item: Item): string[] | undefined => item.children ? item.children.map(({ name }) => name) : undefined
@@ -49,7 +51,11 @@ export const useStore = create<Store>((set) => ({
     const { nav, map } = formatData(data, fileName)
     set({ data, nav, map, fileName })
   },
+  nav: [],
+  map: new Map(),
   fileName: '',
   selectedItem: '',
-  setSelectedItem: (selectedItem) => set({ selectedItem })
+  setSelectedItem: (selectedItem) => set({ selectedItem }),
+  expanded: new Set(),
+  setExpanded: (expanded) => set({ expanded })
 }))

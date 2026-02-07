@@ -1,6 +1,6 @@
-import './App.css'
-import { FileUpload, DetailedView, TreeView } from './components'
 import { useStore } from './store.ts'
+import { FileUpload, DetailedView, TreeView } from './components'
+import './App.css'
 
 export const App = () => {
   const { data } = useStore()
