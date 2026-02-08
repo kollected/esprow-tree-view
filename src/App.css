@@ -28,6 +28,7 @@ but the app is small, just a handful of components, so i can leave everything he
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      min-width: 15rem;
 
       .Line {
         margin: 0.125rem 0;
